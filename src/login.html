@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sessão - Caramelo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            color: #d4a574;
+            font-size: 2rem;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #d4a574;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.75rem;
+            background: #d4a574;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #c49464;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message {
+            color: #27ae60;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .links a {
+            color: #d4a574;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>🐕 Caramelo</h1>
+            <p>Proteção Animal e Soluções ESG</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required placeholder="Sua senha">
+            </div>
+
+            <button type="submit" class="btn-login">Iniciar Sessão</button>
+
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+        </form>
+
+        <div class="links">
+            <a href="#">Esqueceu sua senha?</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Basic validation
+            if (!email || !password) {
+                errorMessage.textContent = 'Por favor, preencha todos os campos.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorMessage.textContent = 'Por favor, insira um e-mail válido.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Simulate session start (in a real app, this would call an API)
+            // Store session information with sanitized email
+            const sanitizedEmail = sanitizeInput(email);
+            const sessionData = {
+                email: sanitizedEmail,
+                timestamp: new Date().toISOString(),
+                sessionId: generateSessionId()
+            };
+
+            // Store in sessionStorage (for demo purposes)
+            sessionStorage.setItem('carameloSession', JSON.stringify(sessionData));
+
+            successMessage.textContent = 'Sessão iniciada com sucesso! Redirecionando...';
+            successMessage.style.display = 'block';
+
+            // Simulate redirect after successful login (DOM-based feedback)
+            setTimeout(function() {
+                // In a real application, redirect to dashboard
+                successMessage.textContent = 'Bem-vindo ao Caramelo! Sessão iniciada com sucesso.';
+            }, 1500);
+        });
+
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
+        }
+
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
+
+        // Check if user is already logged in
+        window.addEventListener('load', function() {
+            const existingSession = sessionStorage.getItem('carameloSession');
+            if (existingSession) {
+                const session = JSON.parse(existingSession);
+                document.getElementById('successMessage').textContent = 
+                    'Você já está logado como ' + session.email;
+                document.getElementById('successMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
