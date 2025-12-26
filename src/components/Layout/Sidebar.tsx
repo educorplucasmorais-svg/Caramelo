@@ -14,8 +14,8 @@ export function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <span className="sidebar-logo">🐕</span>
-        <h1>SEPA</h1>
+        <img src="/logo.jpeg" alt="Caramelo" className="sidebar-logo" style={{width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover'}} />
+        <h1>Caramelo</h1>
       </div>
 
       <nav className="sidebar-nav">
@@ -42,6 +42,11 @@ export function Sidebar() {
         <NavLink to="/chatbot" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
           <span className="nav-icon">🤖</span>
           Chatbot IA
+        </NavLink>
+        
+        <NavLink to="/pos-adocao" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span className="nav-icon">🏠</span>
+          Pós-Adoção
         </NavLink>
       </nav>
 

@@ -8,6 +8,7 @@ import { FichaAnimal } from './pages/FichaAnimal/FichaAnimal';
 import { Relatorios } from './pages/Relatorios/Relatorios';
 import { Configuracoes } from './pages/Configuracoes/Configuracoes';
 import { Chatbot } from './pages/Chatbot/Chatbot';
+import { PosAdocao } from './pages/PosAdocao/PosAdocao';
 import { NotFound } from './pages/NotFound/NotFound';
 import './App.css';
 
@@ -35,6 +36,7 @@ function AppRoutes() {
         <Route path="relatorios" element={<Relatorios />} />
         <Route path="configuracoes" element={<Configuracoes />} />
         <Route path="chatbot" element={<Chatbot />} />
+        <Route path="pos-adocao" element={<PosAdocao />} />
       </Route>
       
       <Route path="*" element={<NotFound />} />

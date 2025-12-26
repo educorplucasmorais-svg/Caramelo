@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { petsRouter } from './pets.js';
+import documentosRouter from './documentos.js';
+import whatsappRouter from './whatsapp.js';
 
 export const router = Router();
 
@@ -10,6 +12,8 @@ router.get('/', (req, res) => {
     version: '1.0.0',
     endpoints: {
       pets: '/api/pets',
+      documentos: '/api/documentos',
+      whatsapp: '/api/whatsapp',
       health: '/health'
     }
   });
@@ -17,3 +21,5 @@ router.get('/', (req, res) => {
 
 // Sub-rotas
 router.use('/pets', petsRouter);
+router.use('/documentos', documentosRouter);
+router.use('/whatsapp', whatsappRouter);

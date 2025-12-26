@@ -5,8 +5,8 @@ import './Configuracoes.css';
 export function Configuracoes() {
   const { usuario } = useAuth();
   const [config, setConfig] = useState({
-    nomeInstituicao: 'SEPA - Sociedade de Proteção Animal',
-    email: 'contato@sepa.org.br',
+    nomeInstituicao: 'Caramelo - ONG de Proteção Animal',
+    email: 'contato@caramelo.org.br',
     telefone: '(11) 99999-9999',
     endereco: 'Rua dos Animais, 123 - São Paulo, SP',
     notificacoes: true,

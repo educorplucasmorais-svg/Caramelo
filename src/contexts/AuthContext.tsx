@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (email && senha) {
       const user: Usuario = {
         id: '1',
-        nome: 'Administrador SEPA',
+        nome: 'Administrador Caramelo',
         email: email,
         cargo: 'admin',
       };
