@@ -14,7 +14,7 @@ export function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <img src="/logo.jpeg" alt="Caramelo" className="sidebar-logo" style={{width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover'}} />
+        <img src="/logo.jpeg" alt="Caramelo" className="sidebar-logo" style={{width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover'}} />
         <h1>Caramelo</h1>
       </div>
 

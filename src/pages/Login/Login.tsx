@@ -35,7 +35,7 @@ export function Login() {
       <div className="login-card">
         <div className="login-header">
           <div className="login-logo">
-            <img src="/logo.jpeg" alt="Caramelo" className="logo-image" style={{width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover'}} />
+            <img src="/logo.jpeg" alt="Caramelo" className="logo-image" style={{width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover'}} />
             <h1>Caramelo</h1>
             <p>Sistema de Gestão de Animais</p>
           </div>
