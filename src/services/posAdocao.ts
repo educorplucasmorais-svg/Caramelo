@@ -475,7 +475,7 @@ export const posAdocaoService = {
 
   // Notificar problema crítico ao time
   async notifyTeam(problemType: string, phoneNumber: string, details: string): Promise<void> {
-    const teamNumber = '5511999999999'; // Número do WhatsApp da equipe
+    const teamNumber = '5531994979803'; // Número do WhatsApp da equipe Caramelo
     const message = `🚨 **ALERTA - Problema Reportado**\n\n**Tipo:** ${problemType}\n**Adotante:** ${phoneNumber}\n**Detalhes:** ${details}\n\nAção necessária!`;
     
     await this.sendWhatsAppMessage(teamNumber, message);

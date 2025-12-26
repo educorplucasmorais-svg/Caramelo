@@ -147,7 +147,7 @@ const intelligentResponses: Record<string, { response: string; quickReplies?: Qu
     ]
   },
   'horário|horario|visita|visitar|conhecer|endereço|endereco|localização|localizacao': {
-    response: "📍 **Localização do Abrigo Caramelo**\n\nRua dos Animais Felizes, 123\nBairro Pet Friendly - São Paulo/SP\n\n🕐 **Horário de Visitação**\nTerça a Domingo: 10h às 17h\n(Segunda: fechado para manutenção)\n\n⚠️ Recomendamos agendar sua visita para melhor atendimento!",
+    response: "📍 **Contato Caramelo**\n\n📱 **WhatsApp:** +55 31 99497-9803\n💬 Atendimento 24/7 via chatbot\n\n🏠 **Abrigo Virtual**\nAcesse nosso sistema online para:\n• Ver animais disponíveis\n• Fazer triagem de adoção\n• Agendar visitas\n• Fazer denúncias\n\n⚠️ Converse conosco pelo WhatsApp!",
     quickReplies: [
       { text: "Agendar visita", emoji: "📅" },
       { text: "Ver no mapa", emoji: "🗺️" },
