@@ -1,0 +1,64 @@
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import './Sidebar.css';
+
+export function Sidebar() {
+  const { usuario, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-header">
+        <span className="sidebar-logo">🐕</span>
+        <h1>SEPA</h1>
+      </div>
+
+      <nav className="sidebar-nav">
+        <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span className="nav-icon">🏠</span>
+          Principal
+        </NavLink>
+        
+        <NavLink to="/animais" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span className="nav-icon">🐾</span>
+          Animais
+        </NavLink>
+        
+        <NavLink to="/relatorios" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span className="nav-icon">📊</span>
+          Relatórios
+        </NavLink>
+        
+        <NavLink to="/configuracoes" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span className="nav-icon">⚙️</span>
+          Configurações
+        </NavLink>
+        
+        <NavLink to="/chatbot" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span className="nav-icon">🤖</span>
+          Chatbot IA
+        </NavLink>
+      </nav>
+
+      <div className="sidebar-footer">
+        <div className="user-info">
+          <div className="user-avatar">
+            {usuario?.nome?.charAt(0) || 'U'}
+          </div>
+          <div className="user-details">
+            <span className="user-name">{usuario?.nome || 'Usuário'}</span>
+            <span className="user-role">{usuario?.cargo || 'Admin'}</span>
+          </div>
+        </div>
+        <button className="btn-logout" onClick={handleLogout}>
+          🚪 Sair
+        </button>
+      </div>
+    </aside>
+  );
+}

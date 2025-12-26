@@ -1,0 +1,77 @@
+.not-found {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 20px;
+}
+
+.not-found-content {
+  text-align: center;
+  color: white;
+  max-width: 500px;
+}
+
+.dog-404 {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.dog-emoji {
+  font-size: 120px;
+  display: block;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.dog-shadow {
+  width: 100px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: shadow 2s infinite;
+}
+
+@keyframes shadow {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(0.8); opacity: 0.3; }
+}
+
+.not-found h1 {
+  font-size: 1.8rem;
+  margin: 0 0 16px;
+  color: #f59e0b;
+}
+
+.not-found p {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.not-found p:last-of-type {
+  margin-bottom: 32px;
+}
+
+.btn-voltar-home {
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-voltar-home:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+}
