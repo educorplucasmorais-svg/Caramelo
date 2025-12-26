@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { posAdocaoService, type Message, type QuickReply, type DocumentoUpload } from '../../services/posAdocao';
 import './PosAdocao.css';
+import { WHATSAPP_WA_ME_URL } from '../../config';
+import { ConfirmModal } from '../../components/ConfirmModal';
 
 export function PosAdocao() {
   const { usuario } = useAuth();
@@ -12,6 +14,7 @@ export function PosAdocao() {
   const [documentFile, setDocumentFile] = useState<File | null>(null);
   const [documentType, setDocumentType] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [confirmWhatsApp, setConfirmWhatsApp] = useState(false);
 
   useEffect(() => {
     const welcomeMessage = posAdocaoService.getWelcomeMessage(usuario?.nome || 'Adotante');
@@ -44,6 +47,10 @@ export function PosAdocao() {
   };
 
   const handleQuickReply = async (reply: QuickReply) => {
+    if (reply.action === 'open_whatsapp') {
+      setConfirmWhatsApp(true);
+      return;
+    }
     const userMessage: Message = {
       id: Date.now().toString(),
       type: 'user',
@@ -161,6 +168,13 @@ export function PosAdocao() {
           </div>
 
           <div className="chat-input-container">
+            <button 
+              className="btn-document"
+              onClick={() => setConfirmWhatsApp(true)}
+              title="Falar com humano"
+            >
+              👤
+            </button>
             <button 
               className="btn-document"
               onClick={() => setShowDocumentModal(true)}
@@ -287,6 +301,20 @@ export function PosAdocao() {
             </div>
           </div>
         </div>
+      )}
+
+      {confirmWhatsApp && (
+        <ConfirmModal
+          title="Falar com humano"
+          message="Vamos abrir o WhatsApp para continuar com nossa equipe no número +55 31 99497-9803. Deseja prosseguir?"
+          cancelText="Cancelar"
+          confirmText="Abrir WhatsApp"
+          onCancel={() => setConfirmWhatsApp(false)}
+          onConfirm={() => {
+            setConfirmWhatsApp(false);
+            window.open(WHATSAPP_WA_ME_URL, '_blank');
+          }}
+        />
       )}
     </div>
   );

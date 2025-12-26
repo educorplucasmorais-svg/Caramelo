@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { petsRouter } from './pets.js';
 import documentosRouter from './documentos.js';
 import whatsappRouter from './whatsapp.js';
+import dataRouter from './data.js';
 
 export const router = Router();
 
@@ -14,6 +15,7 @@ router.get('/', (req, res) => {
       pets: '/api/pets',
       documentos: '/api/documentos',
       whatsapp: '/api/whatsapp',
+      data: '/api/data',
       health: '/health'
     }
   });
@@ -23,3 +25,4 @@ router.get('/', (req, res) => {
 router.use('/pets', petsRouter);
 router.use('/documentos', documentosRouter);
 router.use('/whatsapp', whatsappRouter);
+router.use('/data', dataRouter);

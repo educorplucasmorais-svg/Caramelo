@@ -41,12 +41,17 @@ export function Sidebar() {
         
         <NavLink to="/chatbot" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
           <span className="nav-icon">🤖</span>
-          Chatbot IA
+          Caramelo IA
         </NavLink>
         
         <NavLink to="/pos-adocao" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
           <span className="nav-icon">🏠</span>
           Pós-Adoção
+        </NavLink>
+
+        <NavLink to="/banco-dados" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span className="nav-icon">🗄️</span>
+          Banco de Dados
         </NavLink>
       </nav>
 

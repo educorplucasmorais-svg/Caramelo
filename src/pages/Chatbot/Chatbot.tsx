@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { chatbotService, type Message, type QuickReply } from '../../services/chatbot';
 import './Chatbot.css';
+import { WHATSAPP_WA_ME_URL } from '../../config';
+import { ConfirmModal } from '../../components/ConfirmModal';
 
 export function Chatbot() {
   const { usuario } = useAuth();
@@ -10,6 +12,7 @@ export function Chatbot() {
   const [isTyping, setIsTyping] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [confirmWhatsApp, setConfirmWhatsApp] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -50,6 +53,10 @@ export function Chatbot() {
   };
 
   const handleQuickReply = (reply: QuickReply) => {
+    if (reply.action === 'open_whatsapp') {
+      setConfirmWhatsApp(true);
+      return;
+    }
     handleSendMessage(reply.text);
   };
 
@@ -234,6 +241,14 @@ export function Chatbot() {
             📷
           </button>
 
+          <button
+            className="input-btn"
+            onClick={() => setConfirmWhatsApp(true)}
+            title="Falar com humano"
+          >
+            👤
+          </button>
+
           <input
             type="text"
             placeholder="Digite sua mensagem..."
@@ -252,6 +267,20 @@ export function Chatbot() {
           </button>
         </div>
       </div>
+
+      {confirmWhatsApp && (
+        <ConfirmModal
+          title="Falar com humano"
+          message="Vamos abrir o WhatsApp para continuar com nossa equipe no número +55 31 99497-9803. Deseja prosseguir?"
+          cancelText="Cancelar"
+          confirmText="Abrir WhatsApp"
+          onCancel={() => setConfirmWhatsApp(false)}
+          onConfirm={() => {
+            setConfirmWhatsApp(false);
+            window.open(WHATSAPP_WA_ME_URL, '_blank');
+          }}
+        />
+      )}
 
       {/* Info Panel */}
       <div className="chatbot-info-panel">

@@ -9,6 +9,7 @@ import { Relatorios } from './pages/Relatorios/Relatorios';
 import { Configuracoes } from './pages/Configuracoes/Configuracoes';
 import { Chatbot } from './pages/Chatbot/Chatbot';
 import { PosAdocao } from './pages/PosAdocao/PosAdocao';
+import { BancoDados } from './pages/BancoDados/BancoDados';
 import { NotFound } from './pages/NotFound/NotFound';
 import './App.css';
 
@@ -37,6 +38,7 @@ function AppRoutes() {
         <Route path="configuracoes" element={<Configuracoes />} />
         <Route path="chatbot" element={<Chatbot />} />
         <Route path="pos-adocao" element={<PosAdocao />} />
+        <Route path="banco-dados" element={<BancoDados />} />
       </Route>
       
       <Route path="*" element={<NotFound />} />

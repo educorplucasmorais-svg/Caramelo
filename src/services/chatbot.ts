@@ -113,6 +113,13 @@ const adoptionFlow = {
 
 // Respostas inteligentes baseadas em palavras-chave
 const intelligentResponses: Record<string, { response: string; quickReplies?: QuickReply[] }> = {
+  'humano|atendente|falar com humano|falar com atendente|atendimento': {
+    response: "👤 Vou te conectar com um humano no WhatsApp.\n\nClique em 'Abrir WhatsApp' para iniciar a conversa. Nosso número: +55 31 99497-9803.",
+    quickReplies: [
+      { text: 'Abrir WhatsApp', emoji: '📱', action: 'open_whatsapp' },
+      { text: 'Voltar ao início', emoji: '🏠' }
+    ]
+  },
   'adotar|adoção|adocao|quero adotar': {
     response: "Que maravilha que você quer adotar! 🎉\n\nA adoção responsável é um ato de amor que transforma vidas. Antes de conhecer nossos animais, precisamos fazer uma breve triagem para garantir o melhor match possível.\n\nVamos começar?",
     quickReplies: [
@@ -151,7 +158,8 @@ const intelligentResponses: Record<string, { response: string; quickReplies?: Qu
     quickReplies: [
       { text: "Agendar visita", emoji: "📅" },
       { text: "Ver no mapa", emoji: "🗺️" },
-      { text: "Ligar agora", emoji: "📞" }
+      { text: "Ligar agora", emoji: "📞" },
+      { text: "Abrir WhatsApp", emoji: "📱", action: 'open_whatsapp' }
     ]
   },
   'animal perdido|perdi meu|cachorro perdido|gato perdido|sumiu': {
@@ -215,7 +223,8 @@ export const chatbotService = {
         { text: "Quero adotar", emoji: "🐾" },
         { text: "Denunciar maus-tratos", emoji: "🚨" },
         { text: "Ser voluntário", emoji: "🤝" },
-        { text: "Fazer doação", emoji: "💛" }
+        { text: "Fazer doação", emoji: "💛" },
+        { text: "Falar com humano", emoji: "👤", action: 'open_whatsapp' }
       ]
     };
   },
@@ -333,7 +342,8 @@ export const chatbotService = {
         { text: "Quero adotar", emoji: "🐾" },
         { text: "Denunciar", emoji: "🚨" },
         { text: "Voluntariado", emoji: "🤝" },
-        { text: "Doar", emoji: "💛" }
+        { text: "Doar", emoji: "💛" },
+        { text: "Falar com humano", emoji: "👤", action: 'open_whatsapp' }
       ]
     };
   }

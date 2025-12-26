@@ -154,7 +154,8 @@ export const posAdocaoService = {
         { text: "Fazer check-in", emoji: "📋" },
         { text: "Reportar problema", emoji: "⚠️" },
         { text: "Enviar documento", emoji: "📄" },
-        { text: "Tirar dúvida", emoji: "❓" }
+        { text: "Tirar dúvida", emoji: "❓" },
+        { text: "Falar com humano", emoji: "👤", action: 'open_whatsapp' }
       ]
     };
   },
@@ -264,16 +265,31 @@ export const posAdocaoService = {
       };
     }
 
+    // Solicitar atendimento humano
+    if (lowerMessage.includes('humano') || lowerMessage.includes('atendente') || lowerMessage.includes('atendimento')) {
+      return {
+        id: Date.now().toString(),
+        type: 'bot',
+        content: "👤 Vou te conectar com um humano no WhatsApp.\n\nClique em 'Abrir WhatsApp' para iniciar a conversa com nossa equipe (+55 31 99497-9803).",
+        timestamp: new Date(),
+        quickReplies: [
+          { text: 'Abrir WhatsApp', emoji: '📱', action: 'open_whatsapp' },
+          { text: 'Voltar ao início', emoji: '🏠' }
+        ]
+      };
+    }
+
     // Agendar visita
     if (lowerMessage.includes('agendar') || lowerMessage.includes('visita')) {
       return {
         id: Date.now().toString(),
         type: 'bot',
-        content: "📅 **Agendar Visita de Acompanhamento**\n\nNossas visitas incluem:\n• Avaliação do ambiente\n• Check-up comportamental\n• Orientações personalizadas\n• Fotos e relatório\n\n📞 Entre em contato:\n• WhatsApp: (11) 98765-4321\n• Email: visitas@caramelo.org.br\n\nOu aguarde! Um voluntário entrará em contato em até 48h.",
+        content: "📅 **Agendar Visita de Acompanhamento**\n\nNossas visitas incluem:\n• Avaliação do ambiente\n• Check-up comportamental\n• Orientações personalizadas\n• Fotos e relatório\n\n📞 Entre em contato:\n• WhatsApp: +55 31 99497-9803\n• Email: visitas@caramelo.org.br\n\nOu aguarde! Um voluntário entrará em contato em até 48h.",
         timestamp: new Date(),
         quickReplies: [
           { text: "Aguardar contato", emoji: "✅" },
-          { text: "Prefiro ligar", emoji: "📞" }
+          { text: "Prefiro ligar", emoji: "📞" },
+          { text: "Abrir WhatsApp", emoji: "📱", action: 'open_whatsapp' }
         ]
       };
     }
@@ -388,7 +404,8 @@ export const posAdocaoService = {
         { text: "Fazer check-in", emoji: "📋" },
         { text: "Reportar problema", emoji: "⚠️" },
         { text: "Enviar documento", emoji: "📄" },
-        { text: "Agendar visita", emoji: "📅" }
+        { text: "Agendar visita", emoji: "📅" },
+        { text: "Falar com humano", emoji: "👤", action: 'open_whatsapp' }
       ]
     };
   },
